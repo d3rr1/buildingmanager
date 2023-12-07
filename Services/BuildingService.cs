@@ -12,10 +12,12 @@ namespace Services
     public class BuildingService : IBuildingService
     {
         private readonly IBuildingAgent _buildingAgent;
+        private readonly IGasContractAgent _gasContractAgent;
 
-        public BuildingService(IBuildingAgent buildingAgent)
+        public BuildingService(IBuildingAgent buildingAgent, IGasContractAgent gasContractAgent)
         {
-            _buildingAgent = buildingAgent;   
+            _buildingAgent = buildingAgent;
+            _gasContractAgent = gasContractAgent;
         }
         public IEnumerable<Building> GetAll()
         {
