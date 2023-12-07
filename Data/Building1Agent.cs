@@ -41,7 +41,7 @@ namespace Data
             };
         }
 
-        public async Task<List<double>> GetGasPerMonthAsync(int month, int year)
+        public async Task<double[]> GetGasPerMonthAsync(int month, int year)
         {
             var options = new RestClientOptions(url);
             var client = new RestClient(options);
@@ -52,16 +52,16 @@ namespace Data
             var response = await client.GetAsync(request);
             var result = JsonSerializer.Deserialize<int[]>(response.Content);
 
-            var convertedResults = new List<double>();
-            foreach(var item in result)
+            var convertedResults = new double[result.Length];
+            for(int i = 0; i < result.Length; i++)
             {
-                convertedResults.Add(Convert.ToDouble(item));
+                convertedResults[i] = (Convert.ToDouble(result[i]));
             }
 
             return convertedResults;
         }
 
-        public Task<List<double>> GetWeatherPerMonthAsync(int month, int year)
+        public Task<double[]> GetWeatherPerMonthAsync(int month, int year)
         {
             throw new NotImplementedException();
         }
