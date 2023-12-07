@@ -25,6 +25,7 @@ namespace Data
             var options = new RestClientOptions(_url);
             var client = new RestClient(options);
             var request = new RestRequest("Contract/PowerContract");
+            request.AddParameter("buildingIdentifier", id);
 
             var response = await client.GetAsync(request);
             var result = JsonSerializer.Deserialize<GasContract>(response.Content);

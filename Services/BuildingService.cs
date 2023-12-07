@@ -8,11 +8,13 @@ namespace Services
     public class BuildingService : IBuildingService
     {
         private IBuildingAgent _buildingAgent;
+        private IGasContractAgent _gasContractAgent;
         private readonly IServiceProvider _serviceProvider;
 
-        public BuildingService(IServiceProvider serviceProvider)
+        public BuildingService(IServiceProvider serviceProvider, IGasContractAgent gasContract)
         {
             _serviceProvider = serviceProvider;
+            _gasContractAgent = gasContract;
         }
         public IEnumerable<Building> GetAll()
         {
@@ -38,6 +40,8 @@ namespace Services
                 Name = buildingUsage.Name,
                 MonthlyGasUsage = buildingUsage.GasUsage
             };
+
+            building.GasPrice = await _gasContractAgent.GetGasContract(buildingUsage.Id);
 
             return building;
         }
