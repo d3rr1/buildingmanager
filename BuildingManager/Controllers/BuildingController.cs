@@ -1,5 +1,7 @@
 using BuildingManager.Models;
 using Microsoft.AspNetCore.Mvc;
+using Services.Interfaces;
+using System.Net;
 
 namespace BuildingManager.Controllers
 {
@@ -8,24 +10,29 @@ namespace BuildingManager.Controllers
     public class BuildingController : ControllerBase
     {
         private readonly ILogger<BuildingController> _logger;
+        private readonly IBuildingService _buildingService;
 
         public BuildingController(ILogger<BuildingController> logger)
         {
             _logger = logger;
         }
 
-        //[HttpGet(Name = "GetWeatherForecast")]
-        //public IEnumerable<Building> GetAll()
-        //{
+        [HttpGet(Name = "GetAll")]
+        public IEnumerable<Building> GetAll()
+        {
+            return new List<Building>();
+        }
 
+        [HttpGet(Name = "GetBuilding")]
+        public Building GetBuilding(string type)
+        {
+            return new Building();
+        }
 
-        //    return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-        //    {
-        //        Date = DateTime.Now.AddDays(index),
-        //        TemperatureC = Random.Shared.Next(-20, 55),
-        //        Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-        //    })
-        //    .ToArray();
-        //}
+        [HttpGet(Name = "GetGasUsage")]
+        public Building GetGasUsage(string type, int month, int year)
+        {
+            return new Building();
+        }
     }
 }
