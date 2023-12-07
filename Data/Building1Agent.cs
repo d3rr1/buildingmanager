@@ -28,7 +28,10 @@ namespace Data
             var request = new RestRequest("building/info");
 
             var response = await client.GetAsync(request);
-            var result = JsonSerializer.Deserialize<Building1InfoResponse>(response.Content);
+            var result = JsonSerializer.Deserialize<Building1InfoResponse>(response.Content, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
 
             return new BuildingUsage()
             {

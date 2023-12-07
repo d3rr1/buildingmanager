@@ -28,7 +28,10 @@ namespace Data
             request.AddParameter("buildingIdentifier", id);
 
             var response = await client.GetAsync(request);
-            var result = JsonSerializer.Deserialize<GasContract>(response.Content);
+            var result = JsonSerializer.Deserialize<GasContract>(response.Content, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
 
             return result.GasPrice;
         }
