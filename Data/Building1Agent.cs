@@ -61,7 +61,7 @@ namespace Data
             return convertedResults;
         }
 
-        public Task<List<double>> GetWeatherPerMonthAsync(int month, int year)
+        public Task<List<double>> GetInsideTemperature(int month, int year)
         {
             throw new NotImplementedException();
         }

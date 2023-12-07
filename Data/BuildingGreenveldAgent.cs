@@ -61,10 +61,5 @@ namespace Data
         {
             throw new NotImplementedException();
         }
-
-        public Task<List<double>> GetWeatherPerMonthAsync(int month, int year)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
