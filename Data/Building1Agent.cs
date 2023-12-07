@@ -48,9 +48,9 @@ namespace Data
             request.AddParameter("year", year);
             // The cancellation token comes from the caller. You can still make a call without it.
             var response = await client.GetAsync(request);
-            var result = JsonSerializer.Deserialize<Building1GasResponse>(response.Content);
+            var result = JsonSerializer.Deserialize<int[]>(response.Content);
 
-            foreach (var item in result.GasUsage)
+            foreach (var item in result)
             {
                 buildingGasUsage.GasUsage.Add(Convert.ToDouble(item));
             }
