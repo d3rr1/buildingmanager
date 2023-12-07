@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Data.Responses
 {
-    public class Building1Response
+    public class Building1InfoResponse
     {
         public int Id { get; set; }
         public string Name { get; set; }

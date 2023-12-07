@@ -9,8 +9,7 @@ namespace Data
     public interface IBuildingAgent<T>
     {
         public List<BuildingGasUsage> GetGasPerMonthAsync(int month, int year);
-        public T GetBuildingInfo();
-
-        public T GetAll();
+        public BuildingGasUsage GetBuildingInfo();
+        public List<BuildingGasUsage> GetAll();
     }
 }

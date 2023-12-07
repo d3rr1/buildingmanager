@@ -1,4 +1,5 @@
-﻿using RestSharp;
+﻿using Data.Responses;
+using RestSharp;
 using System.Text.Json;
 
 namespace Data
@@ -17,7 +18,7 @@ namespace Data
             var request = new RestRequest("building/info");
 
             var response = client.Get(request);
-            var result = JsonSerializer.Deserialize<Building1Response>(response.Content);
+            var result = JsonSerializer.Deserialize<Building1InfoResponse>(response.Content);
 
             return new BuildingGasUsage()
             {
