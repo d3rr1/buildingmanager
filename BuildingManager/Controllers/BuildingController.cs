@@ -33,9 +33,9 @@ namespace BuildingManager.Controllers
 
         [HttpGet]
         [Route("/getgasusage/{type}/{year}/{month}")]
-        public Building GetGasUsage(string type, int month, int year)
+        public async Task<Building> GetGasUsage(string type, int month, int year)
         {
-            return _buildingService.GetGasUsage(type, month, year);
+            return await _buildingService.GetGasUsage(type, month, year);
         }
     }
 }

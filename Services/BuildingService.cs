@@ -1,4 +1,5 @@
-﻿using Domain.Interfaces;
+﻿using Data;
+using Domain.Interfaces;
 using Domain.Models;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,12 @@ namespace Services
 {
     public class BuildingService : IBuildingService
     {
+        private readonly IBuildingAgent _buildingAgent;
+
+        public BuildingService(IBuildingAgent buildingAgent)
+        {
+            _buildingAgent = buildingAgent;   
+        }
         public IEnumerable<Building> GetAll()
         {
             return new List<Building>();
@@ -19,9 +26,19 @@ namespace Services
             return new Building();
         }
 
-        public Building GetGasUsage(string type, int month, int year)
+        public async Task<Building> GetGasUsage(string type, int month, int year)
         {
-            return new Building();
+            var buildingUsage = await _buildingAgent.GetBuildingInfoAsync();
+            await _buildingAgent.GetGasPerMonthAsync(buildingUsage, month, year);
+
+            var building = new Building
+            {
+                Id = buildingUsage.Id,
+                Name = buildingUsage.Name,
+                MonthlyGasUsage = buildingUsage.GasUsage
+            };
+
+            return building;
         }
     }
 }

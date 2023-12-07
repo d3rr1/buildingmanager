@@ -1,4 +1,6 @@
 using Data;
+using Domain.Interfaces;
+using Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +12,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<IBuildingAgent, Building1Agent>();
+builder.Services.AddScoped<IBuildingService, BuildingService>();
 
 var app = builder.Build();
 
