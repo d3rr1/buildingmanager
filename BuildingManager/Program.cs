@@ -14,6 +14,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<IBuildingAgent, Building1Agent>();
 builder.Services.AddSingleton<IBuildingAgent, BuildingRedzichtAgent>();
 builder.Services.AddScoped<IBuildingService, BuildingService>();
+builder.Services.AddSingleton<IGasContractAgent, GasContractAgent>();
 
 var app = builder.Build();
 
