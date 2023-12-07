@@ -56,5 +56,15 @@ namespace Data
 
             return buildingGasUsage;
         }
+
+        public Task<List<double>> GetGasPerMonthAsync(int month, int year)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<double>> GetWeatherPerMonthAsync(int month, int year)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

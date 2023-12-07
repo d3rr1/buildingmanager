@@ -32,14 +32,26 @@ namespace Services
             CreateBuildingAgent(type);
 
             var buildingUsage = await _buildingAgent.GetBuildingInfoAsync();
-            await _buildingAgent.GetGasPerMonthAsync(buildingUsage, month, year);
+            var gasUsage =  await _buildingAgent.GetGasPerMonthAsync(month, year);
+            
 
             var building = new Building
             {
                 Id = buildingUsage.Id,
                 Name = buildingUsage.Name,
-                MonthlyGasUsage = buildingUsage.GasUsage
+                MonthlyGasUsage = new List<GasInfo>()
             };
+
+            //weather agent here
+
+            foreach(var item in gasUsage)
+            {
+                var gasInfo = new GasInfo()
+                {
+                    GasUsage = item
+                };
+            }
+
 
             building.GasPrice = await _gasContractAgent.GetGasContract(buildingUsage.Id);
 

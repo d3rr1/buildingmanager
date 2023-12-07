@@ -8,7 +8,8 @@ namespace Data
 {
     public interface IBuildingAgent
     {
-        public Task<BuildingUsage> GetGasPerMonthAsync(BuildingUsage buildingUsage, int month, int year);
+        public Task<List<double>> GetGasPerMonthAsync(int month, int year);
+        public Task<List<double>> GetWeatherPerMonthAsync(int month, int year);
         public Task<BuildingUsage> GetBuildingInfoAsync();
         public List<BuildingUsage> GetAll();
     }
