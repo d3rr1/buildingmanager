@@ -1,3 +1,4 @@
+using BuildingManager.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BuildingManager.Controllers
@@ -16,6 +17,8 @@ namespace BuildingManager.Controllers
         //[HttpGet(Name = "GetWeatherForecast")]
         //public IEnumerable<Building> GetAll()
         //{
+
+
         //    return Enumerable.Range(1, 5).Select(index => new WeatherForecast
         //    {
         //        Date = DateTime.Now.AddDays(index),
