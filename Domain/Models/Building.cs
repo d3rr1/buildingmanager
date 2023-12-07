@@ -1,4 +1,4 @@
-﻿namespace BuildingManager.Models
+﻿namespace Domain.Models
 {
     public class Building
     {

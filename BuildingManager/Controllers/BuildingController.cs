@@ -1,7 +1,6 @@
-using BuildingManager.Models;
+using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
-using Services.Interfaces;
-using System.Net;
+using Domain.Interfaces;
 
 namespace BuildingManager.Controllers
 {
