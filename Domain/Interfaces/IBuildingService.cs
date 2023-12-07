@@ -1,6 +1,6 @@
-﻿using BuildingManager.Models;
+using Domain.Models;
 
-namespace Services.Interfaces
+namespace Domain.Interfaces
 {
     public interface IBuildingService
     {
