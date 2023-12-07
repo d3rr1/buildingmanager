@@ -12,27 +12,28 @@ namespace BuildingManager.Controllers
         private readonly ILogger<BuildingController> _logger;
         private readonly IBuildingService _buildingService;
 
-        public BuildingController(ILogger<BuildingController> logger)
+        public BuildingController(ILogger<BuildingController> logger, IBuildingService buildingService)
         {
             _logger = logger;
+            _buildingService = buildingService;
         }
 
         [HttpGet(Name = "GetAll")]
         public IEnumerable<Building> GetAll()
         {
-            return new List<Building>();
+            return _buildingService.GetAll();
         }
 
         [HttpGet(Name = "GetBuilding")]
         public Building GetBuilding(string type)
         {
-            return new Building();
+            return _buildingService.GetBuildingInfo(type);
         }
 
         [HttpGet(Name = "GetGasUsage")]
         public Building GetGasUsage(string type, int month, int year)
         {
-            return new Building();
+            return _buildingService.GetGasUsage(type, month, year);
         }
     }
 }
