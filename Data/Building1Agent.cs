@@ -41,7 +41,7 @@ namespace Data
 
         public async Task<BuildingUsage> GetGasPerMonthAsync(BuildingUsage buildingGasUsage, int month, int year)
         {
-            var options = new RestClientOptions("https://designdaysbuilding1.azurewebsites.net/");
+            var options = new RestClientOptions(url);
             var client = new RestClient(options);
             var request = new RestRequest("building/gasusage");
             request.AddParameter("month", month);
