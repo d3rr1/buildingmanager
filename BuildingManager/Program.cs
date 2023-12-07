@@ -18,6 +18,7 @@ builder.Services.AddSingleton<IBuildingAgent, BuildingRedzichtAgent>();
 builder.Services.AddSingleton<IBuildingAgent, BuildingGreenveldAgent>();
 builder.Services.AddScoped<IBuildingService, BuildingService>();
 builder.Services.AddSingleton<IGasContractAgent, GasContractAgent>();
+builder.Services.AddSingleton<IWeatherAgent, WeatherAgent>();
 
 var app = builder.Build();
 

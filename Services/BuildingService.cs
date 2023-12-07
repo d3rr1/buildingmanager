@@ -10,11 +10,13 @@ namespace Services
         private IBuildingAgent _buildingAgent;
         private IGasContractAgent _gasContractAgent;
         private readonly IServiceProvider _serviceProvider;
+        private IWeatherAgent _weatherAgent;
 
-        public BuildingService(IServiceProvider serviceProvider, IGasContractAgent gasContract)
+        public BuildingService(IServiceProvider serviceProvider, IGasContractAgent gasContract, IWeatherAgent weatherAgent)
         {
             _serviceProvider = serviceProvider;
             _gasContractAgent = gasContract;
+            _weatherAgent = weatherAgent;
         }
         public IEnumerable<Building> GetAll()
         {
@@ -54,6 +56,8 @@ namespace Services
 
 
             building.GasPrice = await _gasContractAgent.GetGasContract(buildingUsage.Id);
+
+            var result = await _weatherAgent.GetMonthlyWeather(month, year);
 
             return building;
         }
