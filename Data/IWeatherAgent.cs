@@ -8,6 +8,6 @@ namespace Data
 {
     public interface IWeatherAgent
     {
-        public Task<double[]> GetMontlyWeather(int month, int year);
+        public Task<double[]> GetMonthlyWeather(int month, int year);
     }
 }

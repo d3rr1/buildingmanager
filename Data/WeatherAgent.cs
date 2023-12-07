@@ -19,7 +19,7 @@ namespace Data
             _configuration = configuration;
             _url = _configuration["ConnectionStrings:WeatherStation"];
         }
-        public async Task<double[]> GetMontlyWeather(int month, int year)
+        public async Task<double[]> GetMonthlyWeather(int month, int year)
         {
             var options = new RestClientOptions(_url);
             var client = new RestClient(options);

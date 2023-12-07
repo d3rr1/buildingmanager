@@ -45,7 +45,7 @@ namespace Services
 
             building.GasPrice = await _gasContractAgent.GetGasContract(buildingUsage.Id);
 
-            var result = await _weatherAgent.GetMontlyWeather(month, year);
+            var result = await _weatherAgent.GetMonthlyWeather(month, year);
 
             return building;
         }
