@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Data
 {
-    public interface IBuildingAgent<T>
+    public interface IBuildingAgent
     {
         public Task<BuildingUsage> GetGasPerMonthAsync(BuildingUsage buildingUsage, int month, int year);
         public Task<BuildingUsage> GetBuildingInfoAsync();
