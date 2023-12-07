@@ -53,6 +53,9 @@ namespace Services
                 case BuildingType.Redzicht:
                     _buildingAgent = services.First(o => o.GetType() == typeof(BuildingRedzichtAgent));
                     break;
+                case BuildingType.Greenveld:
+                    _buildingAgent = services.First(o => o.GetType() == typeof(BuildingGreenveldAgent));
+                    break;
                 default:
                     throw new NotImplementedException();
             }

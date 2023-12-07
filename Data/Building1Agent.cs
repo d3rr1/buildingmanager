@@ -9,7 +9,6 @@ namespace Data
     {
         private readonly IConfiguration _configuration;
         private readonly string url;
-        private readonly string path;
 
         public Building1Agent(IConfiguration configuration)
         {

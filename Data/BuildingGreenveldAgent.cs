@@ -9,12 +9,11 @@ namespace Data
     {
         private readonly IConfiguration _configuration;
         private readonly string url;
-        private readonly string path;
 
         public BuildingGreenveldAgent(IConfiguration configuration)
         {
             _configuration = configuration;
-            url = _configuration["ConnectionStrings:Building1"];
+            url = _configuration["ConnectionStrings:BuildingGreenveld"];
         }
 
         public List<BuildingUsage> GetAll()
@@ -29,11 +28,11 @@ namespace Data
             var request = new RestRequest("building/info");
 
             var response = await client.GetAsync(request);
-            var result = JsonSerializer.Deserialize<Building1InfoResponse>(response.Content);
+            var result = JsonSerializer.Deserialize<BuildingGreenveldInfoResponse>(response.Content);
 
             return new BuildingUsage()
             {
-                Id = result.Id.ToString(),
+                Id = result.BuildingIdentifier.ToString(),
                 Name = result.Name,
                 GasUsage = new List<double>()
             };
@@ -48,7 +47,7 @@ namespace Data
             request.AddParameter("year", year);
             // The cancellation token comes from the caller. You can still make a call without it.
             var response = await client.GetAsync(request);
-            var result = JsonSerializer.Deserialize<int[]>(response.Content);
+            var result = JsonSerializer.Deserialize<double[]>(response.Content);
 
             foreach (var item in result)
             {

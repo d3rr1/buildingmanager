@@ -4,7 +4,7 @@
     {
         public DateTime Date { get; set; }
         public double SetTemperature { get; set; }
-        public double outdoorTemperature { get; set; }
-        public double gasUsage { get; set; }
+        public double OutdoorTemperature { get; set; }
+        public double GasUsage { get; set; }
     }
 }

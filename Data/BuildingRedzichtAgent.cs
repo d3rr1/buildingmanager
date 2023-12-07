@@ -9,7 +9,6 @@ namespace Data
     {
         private readonly IConfiguration _configuration;
         private readonly string url;
-        private readonly string path;
 
         public BuildingRedzichtAgent(IConfiguration configuration)
         {
@@ -51,7 +50,7 @@ namespace Data
 
             foreach (var item in result)
             {
-                buildingGasUsage.GasUsage.Add(Convert.ToDouble(item.gasUsage));
+                buildingGasUsage.GasUsage.Add(Convert.ToDouble(item.GasUsage));
             }
 
             return buildingGasUsage;

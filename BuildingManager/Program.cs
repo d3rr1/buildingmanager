@@ -13,6 +13,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<IBuildingAgent, Building1Agent>();
 builder.Services.AddSingleton<IBuildingAgent, BuildingRedzichtAgent>();
+builder.Services.AddSingleton<IBuildingAgent, BuildingGreenveldAgent>();
 builder.Services.AddScoped<IBuildingService, BuildingService>();
 builder.Services.AddSingleton<IGasContractAgent, GasContractAgent>();
 
