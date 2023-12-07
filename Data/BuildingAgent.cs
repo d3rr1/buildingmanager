@@ -6,21 +6,21 @@ namespace Data
 {
     public class BuildingAgent<T> : IBuildingAgent<T>
     {
-        public T GetAll()
+        public List<BuildingUsage> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public BuildingGasUsage GetBuildingInfo()
+        public async Task<BuildingUsage> GetBuildingInfoAsync()
         {
             var options = new RestClientOptions("https://designdaysbuilding1.azurewebsites.net/");
             var client = new RestClient(options);
             var request = new RestRequest("building/info");
 
-            var response = client.Get(request);
+            var response = await client.GetAsync(request);
             var result = JsonSerializer.Deserialize<Building1InfoResponse>(response.Content);
 
-            return new BuildingGasUsage()
+            return new BuildingUsage()
             {
                 Id = result.Id.ToString(),
                 Name = result.Name,
@@ -28,7 +28,7 @@ namespace Data
             };
         }
 
-        public async Task<BuildingGasUsage> GetGasPerMonthAsync(BuildingGasUsage buildingGasUsage, int month, int year)
+        public async Task<BuildingUsage> GetGasPerMonthAsync(BuildingUsage buildingGasUsage, int month, int year)
         {
             var options = new RestClientOptions("https://designdaysbuilding1.azurewebsites.net/");
             var client = new RestClient(options);
