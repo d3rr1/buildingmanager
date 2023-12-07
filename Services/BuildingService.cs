@@ -35,7 +35,8 @@ namespace Services
 
             var buildingUsage = await _buildingAgent.GetBuildingInfoAsync();
             var gasUsage =  await _buildingAgent.GetGasPerMonthAsync(month, year);
-            
+            var weather = await _weatherAgent.GetMonthlyWeather(month, year);
+
 
             var building = new Building
             {
@@ -46,18 +47,17 @@ namespace Services
 
             //weather agent here
 
-            foreach(var item in gasUsage)
+            for(int i =0;i < gasUsage.Count; i++)
             {
                 var gasInfo = new GasInfo()
                 {
-                    GasUsage = item
+                    GasUsage = gasUsage[i],
+                    OutTemp = weather[i]
                 };
+                building.MonthlyGasUsage.Add(gasInfo);
             }
 
-
             building.GasPrice = await _gasContractAgent.GetGasContract(buildingUsage.Id);
-
-            var result = await _weatherAgent.GetMonthlyWeather(month, year);
 
             return building;
         }
