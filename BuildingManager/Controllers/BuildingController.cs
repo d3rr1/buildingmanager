@@ -17,19 +17,22 @@ namespace BuildingManager.Controllers
             _buildingService = buildingService;
         }
 
-        [HttpGet(Name = "GetAll")]
+        [HttpGet]
+        [Route("/getbuildings")]
         public IEnumerable<Building> GetAll()
         {
             return _buildingService.GetAll();
         }
 
-        [HttpGet(Name = "GetBuilding")]
+        [HttpGet]
+        [Route("/getbuilding/{type}")]
         public Building GetBuilding(string type)
         {
             return _buildingService.GetBuildingInfo(type);
         }
 
-        [HttpGet(Name = "GetGasUsage")]
+        [HttpGet]
+        [Route("/getgasusage/{type}/{year}/{month}")]
         public Building GetGasUsage(string type, int month, int year)
         {
             return _buildingService.GetGasUsage(type, month, year);
