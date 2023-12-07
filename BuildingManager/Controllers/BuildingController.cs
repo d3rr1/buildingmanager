@@ -26,14 +26,14 @@ namespace BuildingManager.Controllers
 
         [HttpGet]
         [Route("/getbuilding/{type}")]
-        public Building GetBuilding(string type)
+        public Building GetBuilding(BuildingType type)
         {
             return _buildingService.GetBuildingInfo(type);
         }
 
         [HttpGet]
         [Route("/getgasusage/{type}/{year}/{month}")]
-        public async Task<Building> GetGasUsage(string type, int month, int year)
+        public async Task<Building> GetGasUsage(BuildingType type, int month, int year)
         {
             return await _buildingService.GetGasUsage(type, month, year);
         }

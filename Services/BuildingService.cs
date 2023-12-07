@@ -1,33 +1,34 @@
 ﻿using Data;
 using Domain.Interfaces;
 using Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Services
 {
     public class BuildingService : IBuildingService
     {
-        private readonly IBuildingAgent _buildingAgent;
+        private IBuildingAgent _buildingAgent;
+        private readonly IServiceProvider _serviceProvider;
 
-        public BuildingService(IBuildingAgent buildingAgent)
+        public BuildingService(IServiceProvider serviceProvider)
         {
-            _buildingAgent = buildingAgent;   
+            _serviceProvider = serviceProvider;
         }
         public IEnumerable<Building> GetAll()
         {
             return new List<Building>();
         }
-        public Building GetBuildingInfo(string type)
+        public Building GetBuildingInfo(BuildingType type)
         {
+            CreateBuildingAgent(type);
+
             return new Building();
         }
 
-        public async Task<Building> GetGasUsage(string type, int month, int year)
+        public async Task<Building> GetGasUsage(BuildingType type, int month, int year)
         {
+            CreateBuildingAgent(type);
+
             var buildingUsage = await _buildingAgent.GetBuildingInfoAsync();
             await _buildingAgent.GetGasPerMonthAsync(buildingUsage, month, year);
 
@@ -39,6 +40,22 @@ namespace Services
             };
 
             return building;
+        }
+
+        private void CreateBuildingAgent(BuildingType type)
+        {
+            var services = _serviceProvider.GetServices<IBuildingAgent>();
+            switch (type)
+            {
+                case BuildingType.Building1:
+                    _buildingAgent = services.First(o => o.GetType() == typeof(Building1Agent));
+                    break;
+                case BuildingType.Redzicht:
+                    _buildingAgent = services.First(o => o.GetType() == typeof(BuildingRedzichtAgent));
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
         }
     }
 }

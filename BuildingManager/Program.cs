@@ -12,6 +12,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<IBuildingAgent, Building1Agent>();
+builder.Services.AddSingleton<IBuildingAgent, BuildingRedzichtAgent>();
 builder.Services.AddScoped<IBuildingService, BuildingService>();
 
 var app = builder.Build();
